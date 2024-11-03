@@ -16,3 +16,17 @@ class Post(models.Model):
 
    def __str__(self):
        return self.title
+   
+class Voetbalspelers(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    actuele_voetbalclub = models.CharField(max_length=100)
+    datum_van_invoer = models.DateTimeField(default=timezone.now)
+    datum_van_laatste_aanpassing = models.DateTimeField(blank=True, null=True)
+
+    def save(self):
+       self.datum_van_laatste_aanpassing = timezone.now()
+       self.save()
+
+    def __str__(self):
+       return self.name
