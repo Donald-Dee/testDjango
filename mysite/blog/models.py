@@ -24,9 +24,9 @@ class Voetbalspelers(models.Model):
     datum_van_invoer = models.DateTimeField(default=timezone.now)
     datum_van_laatste_aanpassing = models.DateTimeField(blank=True, null=True)
 
-    def save(self):
-       self.datum_van_laatste_aanpassing = timezone.now()
-       super().save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        self.datum_van_laatste_aanpassing = timezone.now()
+        super().save(*args, **kwargs)
 
     def __str__(self):
-       return self.name
+        return self.name
